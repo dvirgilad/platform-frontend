@@ -1,5 +1,5 @@
 import { useThumbnail } from "@hooks/thumbnail/useThumbnail";
-import React, { useMemo } from "react";
+import React from "react";
 import { thumbnails } from "./thumbnails";
 
 type AllThumbnailsProps = {
@@ -11,7 +11,7 @@ const AllThumbnails = ({
   newThumbnail,
   setNewThumbnail,
 }: AllThumbnailsProps) => {
-  const { thumbnail: currentThumbnail, chooseThumbnail } = useThumbnail();
+  const { thumbnail: currentThumbnail } = useThumbnail();
   return (
     <div className="flex items-start content-start gap-x-[9px] self-stretch flex-wrap">
       {thumbnails.map((thumbnail) => {
@@ -19,7 +19,7 @@ const AllThumbnails = ({
           return (
             <div
               onClick={() => {
-                chooseThumbnail(thumbnail.index);
+                setNewThumbnail(thumbnail.index);
               }}
               key={thumbnail.index}
               className={`hover:cursor-pointer flex p-1.5 justify-center items-center bg-mono/basic-13 border-solid border rounded-full grow ${

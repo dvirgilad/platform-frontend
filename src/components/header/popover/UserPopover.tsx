@@ -10,6 +10,7 @@ import { ActionMenuItem } from "@components/menu/items";
 import ActionMenu from "@components/menu/ActionMenu/ActionMenu";
 import ColorModal from "./modal/ColorModal";
 import { useThumbnail } from "@hooks/thumbnail/useThumbnail";
+import { thumbnails } from "./modal/thumbnails";
 
 type UserPopoverProps = {
   user: string;
@@ -72,13 +73,13 @@ const UserPopover = React.memo(({ user }: UserPopoverProps) => {
     <>
       <div className="place-self-end flex items-center h-full pr-5.5">
         <div className="relative flex justify-center items-center">
-          {dynamicThumbnailLoader(thumbnail)}
+          {thumbnails.find((thmb) => thmb.index === thumbnail)?.icon}
           <div className="text-white absolute inset-0 flex justify-center items-center">
             {getFirstLetterOfUser().toUpperCase()}
           </div>
         </div>
         <div
-          className="group flex items-center cursor-pointer"
+          className="group flex items-center cursor-pointer justify-between"
           onClick={() => {
             setMenuOpen(!menuOpen);
           }}

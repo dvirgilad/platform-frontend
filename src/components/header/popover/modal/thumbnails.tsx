@@ -17,8 +17,6 @@ export type Item = {
   icon: ReactNode;
 };
 
-const basePath: string = "/projects/$projectName";
-
 export const thumbnails: Item[] = [
   {
     index: 1,

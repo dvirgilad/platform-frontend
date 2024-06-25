@@ -4,7 +4,6 @@ import Typography from "@components/typography/Typography";
 import React from "react";
 import ReactDOM from "react-dom";
 import { ActionMenuItem } from "../items";
-import { Link } from "@tanstack/react-router";
 
 interface ActionMenuProps {
   items: ActionMenuItem[];

@@ -6,20 +6,20 @@ import Typography from "@components/typography/Typography";
 import React, { useState } from "react";
 import AllThumbnails from "./AllThumbnails";
 import { useThumbnail } from "@hooks/thumbnail/useThumbnail";
+import { thumbnails } from "./thumbnails";
 
 type ColorModalProps = {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const ColorModal = React.memo(({ setShowModal }: ColorModalProps) => {
-  // const [newThumbnail, setNewThumbnail] = useState(0);
-  const { setThumbnail, thumbnail, chooseThumbnail, chosenThumbnail } =
-    useThumbnail();
+  const { setThumbnail, thumbnail } = useThumbnail();
+  const [newThumbnail, setNewThumbnail] = useState(thumbnail);
 
-  // const handleChangeThumbnail = () => {
-  //   if (newThumbnail !== 0) setThumbnail(newThumbnail);
-  //   setShowModal(false);
-  // };
+  const handleChangeThumbnail = () => {
+    if (newThumbnail !== 0) setThumbnail(newThumbnail);
+    setShowModal(false);
+  };
   return (
     <>
       <Modal darkenBackground={true}>
@@ -43,7 +43,7 @@ const ColorModal = React.memo(({ setShowModal }: ColorModalProps) => {
                 Current thumbnail:
               </Typography>
               <div className="flex p-1.5 items-start gap-2.5 border-green/basic-6 border-2 border-solid rounded-[32px]">
-                {/* {dynamicThumbnailLoader(thumbnail)} */}
+                {thumbnails.find((thmb) => thmb.index === thumbnail)?.icon}
               </div>
             </div>
             <div className="flex content-start items-start gap-2 flex-wrap ">
@@ -55,13 +55,13 @@ const ColorModal = React.memo(({ setShowModal }: ColorModalProps) => {
               </Typography>
 
               <AllThumbnails
-                newThumbnail={chosenThumbnail}
-                setNewThumbnail={chooseThumbnail}
+                newThumbnail={newThumbnail}
+                setNewThumbnail={setNewThumbnail}
               />
 
               <div className="flex items-center justify-between pt-3 h-13 w-full">
                 <Button
-                  onClick={() => setThumbnail(chosenThumbnail)}
+                  onClick={() => handleChangeThumbnail()}
                   variant="primary"
                   className="w-[140px]"
                 >
