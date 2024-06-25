@@ -8,7 +8,7 @@ type ModalProps = {
 
 const modalRoot = document.getElementById("modal-root");
 
-const Modal: React.FC<ModalProps> = ({
+const Modal: React.FC<ModalProps> = React.memo(({
   children,
   darkenBackground = false,
 }: ModalProps) => {
@@ -22,6 +22,6 @@ const Modal: React.FC<ModalProps> = ({
     </div>,
     modalRoot!
   );
-};
+});
 
 export default Modal;

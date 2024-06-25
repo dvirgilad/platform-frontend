@@ -180,6 +180,7 @@ export default {
         65: "262px",
         100: "421px",
         150: "620px",
+        
       },
       height: {
         13: "52px",
