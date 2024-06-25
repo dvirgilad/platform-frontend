@@ -3,7 +3,6 @@ import Button from "@components/button/Button";
 
 import Modal from "@components/modal/Modal";
 import Typography from "@components/typography/Typography";
-import { dynamicThumbnailLoader } from "@utils/dynamicComponentLoader";
 import React, { useState } from "react";
 import AllThumbnails from "./AllThumbnails";
 import { useThumbnail } from "@hooks/thumbnail/useThumbnail";
@@ -13,12 +12,14 @@ type ColorModalProps = {
 };
 
 const ColorModal = React.memo(({ setShowModal }: ColorModalProps) => {
-  const [newThumbnail, setNewThumbnail] = useState(0);
-  const { setThumbnail, thumbnail } = useThumbnail();
-  const handleChangeThumbnail = () => {
-    if (newThumbnail !== 0) setThumbnail(newThumbnail);
-    setShowModal(false);
-  };
+  // const [newThumbnail, setNewThumbnail] = useState(0);
+  const { setThumbnail, thumbnail, chooseThumbnail, chosenThumbnail } =
+    useThumbnail();
+
+  // const handleChangeThumbnail = () => {
+  //   if (newThumbnail !== 0) setThumbnail(newThumbnail);
+  //   setShowModal(false);
+  // };
   return (
     <>
       <Modal darkenBackground={true}>
@@ -42,7 +43,7 @@ const ColorModal = React.memo(({ setShowModal }: ColorModalProps) => {
                 Current thumbnail:
               </Typography>
               <div className="flex p-1.5 items-start gap-2.5 border-green/basic-6 border-2 border-solid rounded-[32px]">
-                {dynamicThumbnailLoader(thumbnail)}
+                {/* {dynamicThumbnailLoader(thumbnail)} */}
               </div>
             </div>
             <div className="flex content-start items-start gap-2 flex-wrap ">
@@ -54,13 +55,13 @@ const ColorModal = React.memo(({ setShowModal }: ColorModalProps) => {
               </Typography>
 
               <AllThumbnails
-                newThumbnail={newThumbnail}
-                setNewThumbnail={setNewThumbnail}
+                newThumbnail={chosenThumbnail}
+                setNewThumbnail={chooseThumbnail}
               />
 
               <div className="flex items-center justify-between pt-3 h-13 w-full">
                 <Button
-                  onClick={handleChangeThumbnail}
+                  onClick={() => setThumbnail(chosenThumbnail)}
                   variant="primary"
                   className="w-[140px]"
                 >
